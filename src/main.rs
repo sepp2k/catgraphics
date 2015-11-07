@@ -10,5 +10,5 @@ fn main() {
                    mk_op(InfixOp::Div,
                         mk_op(InfixOp::Mul, c(3), c(2)),
                         c(1)));
-    println!("4 + 3 * 2 / 1 = {}", eval(&*exp));
+    println!("{} = {}", exp, eval(&*exp));
 }
