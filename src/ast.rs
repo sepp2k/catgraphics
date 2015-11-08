@@ -1,6 +1,6 @@
 #[derive(Debug)]
 pub enum Exp {
-    ConstInt(i32),
+    Const(f64),
     InfixExp(InfixOp, Box<Exp>, Box<Exp>)
 }
 
@@ -9,8 +9,8 @@ pub enum InfixOp {
     Add, Mul, Div
 }
 
-pub fn c(i: i32) -> Box<Exp> {
-    Box::new(Exp::ConstInt(i))
+pub fn c(num: f64) -> Box<Exp> {
+    Box::new(Exp::Const(num))
 }
 
 pub fn mk_op(op: InfixOp, lhs: Box<Exp>, rhs: Box<Exp>) -> Box<Exp> {
@@ -32,7 +32,7 @@ impl fmt::Display for InfixOp {
 impl fmt::Display for Exp {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
-            Exp::ConstInt(i) => write!(f, "{}", i),
+            Exp::Const(num) => write!(f, "{}", num),
             Exp::InfixExp(op, ref lhs, ref rhs) => write!(f, "({} {} {})", lhs, op, rhs)
         }
     }
