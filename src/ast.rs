@@ -1,3 +1,11 @@
+#[derive (Debug)]
+pub enum Stmnt {
+    Move(Box<Exp>),
+    Rotate(Box<Exp>),
+    PenUp,
+    PenDown
+}
+
 #[derive(Debug)]
 pub enum Exp {
     Const(f64),
