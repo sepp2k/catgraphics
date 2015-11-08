@@ -2,8 +2,10 @@ use ast::*;
 use std::vec::Vec;
 use std::f64::consts::PI;
 
-pub fn interp(stmnts: &Vec<Stmnt>) -> () {
-    let mut coord: (f64, f64) = (0.0, 0.0);
+type Coord = (f64, f64);
+
+pub fn interp<F: FnMut(Coord, Coord) -> ()>(stmnts: &Vec<Stmnt>, mut draw_line: F) -> () {
+    let mut coord: Coord = (0.0, 0.0);
     let mut angle: f64 = 0.0;
     let mut pen_down = false;
     for stmnt in stmnts {
@@ -13,6 +15,7 @@ pub fn interp(stmnts: &Vec<Stmnt>) -> () {
                 let new_coord = (coord.0 + length * angle.cos(), coord.1 + length * angle.sin());
                 if pen_down {
                     println!("Drawing line from {:?} to {:?}.", coord, new_coord);
+                    draw_line(coord, new_coord);
                 } else {
                     println!("Moving from {:?} to {:?}.", coord, new_coord);
                 }
