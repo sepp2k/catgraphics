@@ -1,6 +1,7 @@
 extern crate piston_window;
 
 mod ast;
+mod ast_display;
 mod interp;
 
 use piston_window::*;
