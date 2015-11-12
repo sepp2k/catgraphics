@@ -20,10 +20,10 @@ fn main() {
         .unwrap_or_else(|e| { panic!("Failed to build PistonWindow: {}", e) });
 
     let exp = mk_op(InfixOp::Add,
-                   c(4.0),
-                   mk_op(InfixOp::Div,
-                        mk_op(InfixOp::Mul, c(3.0), c(2.0)),
-                        c(1.0)));
+                    c(4.0),
+                    mk_op(InfixOp::Div,
+                          mk_op(InfixOp::Mul, c(3.0), c(2.0)),
+                          c(1.0)));
     println!("{} = {}", exp, eval(&*exp));
 
     let prog = vec![
@@ -33,6 +33,9 @@ fn main() {
         Stmnt::Rotate(c(13.0)),
         Stmnt::Move(c(42.0)),
         Stmnt::PenUp];
+    println!("Running program:");
+    ast_display::print_stmnts(&prog);
+
     let white = [1.0; 4];
     let black = [0.0, 0.0, 0.0, 1.0];
     for e in window {

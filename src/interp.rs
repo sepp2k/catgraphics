@@ -14,10 +14,7 @@ pub fn interp<F: FnMut(Coord, Coord) -> ()>(stmnts: &Vec<Stmnt>, mut draw_line: 
                 let length = eval(&length);
                 let new_coord = (coord.0 + length * angle.cos(), coord.1 + length * angle.sin());
                 if pen_down {
-                    println!("Drawing line from {:?} to {:?}.", coord, new_coord);
                     draw_line(coord, new_coord);
-                } else {
-                    println!("Moving from {:?} to {:?}.", coord, new_coord);
                 }
                 coord = new_coord
             },

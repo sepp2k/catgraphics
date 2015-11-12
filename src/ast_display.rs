@@ -19,3 +19,20 @@ impl fmt::Display for Exp {
         }
     }
 }
+
+impl fmt::Display for Stmnt {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            Stmnt::Move(ref exp) => write!(f, "move {}", exp),
+            Stmnt::Rotate(ref exp) => write!(f, "rotate {}", exp),
+            Stmnt::PenUp => write!(f, "pen up"),
+            Stmnt::PenDown => write!(f, "pen down")
+        }
+    }
+}
+
+pub fn print_stmnts(stmnts: &Vec<Stmnt>) -> () {
+    for stmnt in stmnts {
+        println!("{}", stmnt)
+    }
+}
